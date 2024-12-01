@@ -1,0 +1,72 @@
+server:
+  port: 8082
+welcome:
+  message: Welcome to Code With Buffer!!
+spring:
+    profiles:
+      active: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: qa  # Correct profile activation
+  application:
+    name: Spring-Boot-Rest  # Define the application name here
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: schooldb
+    url: jdbc:mysql://localhost:3306/schooldb
+    username: schooldb
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: Spring-Boot-Rest  # Define the application name here
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: springjdbc
+    url: jdbc:mysql://localhost:3306/springjdbc
+    username: springjdbc
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: prod # Correct profile activation
+#  application:
+#    name: Spring-Boot-tutorial  # Define the application name here
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    password: schooldb-1
+#    url: jdbc:mysql://localhost:3306/schooldb-1
+#    username: schooldb-1
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#    show-sql: true
